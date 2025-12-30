@@ -1,100 +1,74 @@
-/* === Couleurs du club === */
-:root {
-    --main-bg: #000;      /* noir */
-    --main-text: #fff;    /* blanc */
-    --accent: #ccc;       /* gris clair pour accents et boutons */
-    --hover: #fff;        /* blanc pour hover */
+/* RESET MINIMAL */
+* {
+    margin: 0; /* Supprime toutes les marges par défaut des éléments */
+    padding: 0; /* Supprime tous les paddings par défaut des éléments */
+    box-sizing: border-box; /* Inclut padding et border dans la largeur/hauteur des éléments */
 }
 
+/* BASE */
 body {
-    margin: 0;
-    font-family: 'Raleway', Arial, sans-serif;
-    background: var(--main-bg);
-    color: var(--main-text);
+    font-family: 'Raleway', sans-serif; /* Police principale de la page */
+    background: #0f0f0f; /* Couleur de fond noire très foncée */
+    color: #eaeaea; /* Couleur du texte principale (gris clair) */
 }
 
-/* === Navbar === */
+/* NAVBAR */
 .navbar {
-    padding: 1rem 2rem;
-    background: var(--main-bg);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 2px solid var(--accent);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: sticky; /* Permet à la navbar de rester visible en haut lors du scroll */
+    top: 0; /* Positionne la navbar en haut de la page */
+    background: #111; /* Couleur de fond très sombre pour la navbar */
+    border-bottom: 1px solid #444; /* Ligne de séparation sous la navbar */
+    z-index: 1000; /* Assure que la navbar reste au-dessus des autres éléments */
 }
 
+.nav-container {
+    width: 100%; /* Prend toute la largeur de l’écran */
+    margin: auto; /* Centre le conteneur si max-width était défini */
+    padding: 1rem 2rem; /* Espace intérieur haut/bas 1rem et gauche/droite 2rem */
+    display: flex; /* Active le Flexbox pour aligner les enfants sur une ligne */
+    justify-content: space-between; /* Logo à gauche, liens à droite */
+    align-items: center; /* Centre verticalement logo et liens */
+}
+
+/* LOGO */
 .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
+    display: block; /* S’assure que l’image est un bloc et reste dans le flex container */
+    height: 100px;  /* Définit la taille du logo */
+    cursor: pointer; /* Change le curseur au survol pour indiquer que c’est cliquable */
 }
 
+/* NAV LINKS */
 .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
+    list-style: none; /* Supprime les puces de la liste */
+    display: flex; /* Affiche les liens sur une seule ligne */
+    gap: 2rem; /* Espace entre chaque lien */
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: var(--main-text);
-    font-weight: 500;
-    transition: color 0.3s;
+    text-decoration: none; /* Supprime le soulignement par défaut */
+    color: #eaeaea; /* Couleur du texte des liens */
+    font-weight: 500; /* Poids de la police pour les liens */
+    position: relative; /* Nécessaire pour le soulignement animé */
+    padding-bottom: 4px; /* Petit espace entre le texte et le soulignement */
+    transition: color 0.3s ease; /* Transition douce de la couleur au survol */
+}
+
+/* SOULIGNEMENT AU HOVER */
+.nav-links a::after {
+    content: ""; /* Nécessaire pour créer un pseudo-élément */
+    position: absolute; /* Position absolue par rapport au lien */
+    left: 0; /* Commence à gauche du lien */
+    bottom: 0; /* Positionné en bas du lien */
+    width: 0; /* Largeur initiale à 0 pour l’animation */
+    height: 2px; /* Épaisseur de la ligne */
+    background: #ff0000; /* Couleur de la ligne (rouge) */
+    transition: width 0.3s ease; /* Animation de largeur lors du survol */
+}
+
+.nav-links a:hover::after {
+    width: 100%; /* La ligne s’étend sur toute la largeur du lien au survol */
 }
 
 .nav-links a:hover {
-    color: var(--accent);
-}
-
-/* === Sections === */
-.section {
-    padding: 4rem 2rem;
-    text-align: center;
-    border-bottom: 1px solid var(--accent);
-}
-
-/* Hero */
-.hero {
-    height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: url('dojo.jpg') center/cover no-repeat;
-}
-
-.hero-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-}
-
-/* === Boutons === */
-.btn {
-    display: inline-block;
-    margin-top: 1rem;
-    background: var(--accent);
-    color: var(--main-bg);
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: var(--main-text);
-    color: var(--main-bg);
-}
-
-/* Footer */
-.footer {
-    padding: 2rem;
-    text-align: center;
-    border-top: 2px solid var(--accent);
+    color: #ff0000; /* Change la couleur du texte au survol */
 }
